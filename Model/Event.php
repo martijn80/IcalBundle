@@ -25,7 +25,7 @@ class Event
         }
     }
 
-    public function setStartDate(\Datetime $date)
+    public function setStartDate(\DateTime $date)
     {
         $params = array();
         if (true === $this->isAllDayEvent) {
@@ -37,7 +37,7 @@ class Event
         return $this;
     }
 
-    public function setEndDate(\Datetime $date)
+    public function setEndDate(\DateTime $date)
     {
         $params = array();
         if (true === $this->isAllDayEvent) {
@@ -150,6 +150,8 @@ class Event
         if (method_exists($this->event, $name)) {
             return call_user_func_array(array($this->event, $name), $arguments);
         }
+
+        throw new \BadMethodCallException(sprintf('Method %s does not exist on %s', $name, get_class($this->event)));
     }
 
     public function getEvent()
@@ -157,7 +159,7 @@ class Event
         return $this->event;
     }
 
-    private function datetimeToArray(\Datetime $datetime)
+    private function datetimeToArray(\DateTime $datetime)
     {
         $str = $datetime->format('Y-m-d H:i:s');
 

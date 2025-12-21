@@ -86,7 +86,7 @@ class Calendar
         $str = $this->cal->vtimezonePopulate()->createCalendar();
 
         if (false === mb_check_encoding($str, 'UTF-8')) {
-            $str = utf8_encode($str);
+            $str = mb_convert_encoding($str, 'UTF-8', 'ISO-8859-1');
         }
 
         return $str;

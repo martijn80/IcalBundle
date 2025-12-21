@@ -19,7 +19,7 @@ class TestKernel extends Kernel
         $this->servicesDefinitionPath = $servicesDefinitionPath;
     }
 
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         return array(
             new FrameworkBundle(),

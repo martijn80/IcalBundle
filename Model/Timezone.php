@@ -46,6 +46,8 @@ class Timezone
         if (method_exists($this->tz, $name)) {
             return call_user_func_array(array($this->tz, $name), $arguments);
         }
+
+        throw new \BadMethodCallException(sprintf('Method %s does not exist on %s', $name, get_class($this->tz)));
     }
 
     public function getTimezone()
